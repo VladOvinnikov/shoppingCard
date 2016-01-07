@@ -1,0 +1,82 @@
+<div class="row">
+    <div class="col-lg-2 col-md-2">
+        <div class="well">
+        <h5>Ganres:</h5>
+        <ul class="list-unstyled" ng-repeat="ganre in ganres">
+            <li class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="chekedGanre" ng-change="setChecked(ganre, chekedGanre)">{{ganre}}
+                </label>
+            </li>
+        </ul>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4">
+        <div class="well">
+            <h3>Films list</h3>
+            <form class="form-inline">
+                    <div class="form-group">
+                        <label for="nameForm">Find film:</label>
+                        <input type="text" class="form-control input-sm" placeholder="Name" ng-model="nameFilter.name">
+                    </div>
+            </form><br>
+            <div ng-repeat="film in films | filter: nameFilter">
+                <div class="row film-frame">
+                    <div class="col-lg-12"><h4>{{film.name}}</h4></div>
+                    <div class="col-lg-2 col-md-5">
+                        <img class="img img-thumbnail" src="{{film.image}}">
+                    </div>
+                    <div class="col-lg-10 col-md-7">
+                        <div class="container">
+                            <small>{{film.ganres}}</small><br>
+                            <span>Price: {{film.price | currency}}</span>
+                        </div>
+                        <div class="container">
+                            <form class="form-inline">
+                                <button class="btn btn-default btn-sm" ng-click="addItemToBacket(film)">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span> Add</button>
+                            </form>
+                        </div>
+                    </div>
+                </div><br>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6">
+        <div class="well">
+            <h3>Your bucket:</h3> 
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody >
+                    <tr ng-repeat="(key, value) in uniqueList = (addedFilms | unique: 'id')">         
+                        <td>{{key+1}}</td>
+                        <td>{{uniqueList[key].name}}</td>
+                        <td>{{addedFilms | quantity: uniqueList[key].id}}</td>
+                        <td>{{uniqueList[key].price | currency}}</td>
+                        <td>{{uniqueList[key].price * (addedFilms | quantity: uniqueList[key].id) | currency}}</td>
+                        <td><button id="addForm" class="btn btn-default btn-sm" type="submit" ng-click="removeFromBasket(uniqueList[key].id, uniqueList[key].$$hashKey)">
+                        <span class="glyphicon glyphicon-remove"></span> </button></td>
+                    </tr>
+                    <tr><td></td><td></td><td></td><td>Total:</td><td>
+
+                        {{addedFilms | totalQuantity: 'id' : 'price' | currency}}
+                        
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+

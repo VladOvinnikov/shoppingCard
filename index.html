@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+        <title>Shop</title>
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+        
+    </head>
+    <body ng-app="shop">
+        <div class="container"><div ng-view=""></div></div>
+        <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+        <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+        <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+        
+        <!-- App -->
+        <script type="text/javascript" src="app/app.js"></script>
+        
+        <!-- Controllers -->
+        <script type="text/javascript" src="app/controllers/listCtrl.js"></script>
+        
+        <!-- Services -->
+        <script type="text/javascript" src="app/services/filmService.js"></script>
+    </body>
+</html>
