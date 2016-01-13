@@ -23,10 +23,10 @@
             <div ng-repeat="film in films | filter: nameFilter">
                 <div class="row film-frame">
                     <div class="col-lg-12"><h4>{{film.name}}</h4></div>
-                    <div class="col-lg-2 col-md-5">
+                    <div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
                         <img class="img img-thumbnail" src="{{film.image}}">
                     </div>
-                    <div class="col-lg-10 col-md-7">
+                    <div class="col-lg-8 col-md-7 col-sm-6 col-xs-6">
                         <div class="container">
                             <small>{{film.ganres}}</small><br>
                             <span>Price: {{film.price | currency}}</span>
@@ -56,7 +56,7 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody >
+                <tbody>
                     <tr ng-repeat="(key, value) in uniqueList = (addedFilms | unique: 'id')">         
                         <td>{{key+1}}</td>
                         <td>{{uniqueList[key].name}}</td>
